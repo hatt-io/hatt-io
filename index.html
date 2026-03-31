@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ezra Hatt</title>
+<meta name="description" content="Ezra Hatt. Privacy law, AI governance, information security.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-el: #111114;
+    --border: #1e1e24;
+    --border-h: #2a2a34;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --text-muted: #3f3f46;
+    --accent: #6ee7b7;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .w {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  .logo .c { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 0%,50%{opacity:1}51%,100%{opacity:0} }
+
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text-dim); }
+
+  .hero { padding: 100px 0 0; }
+
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 500;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  .term {
+    margin: 56px 0 0;
+    background: var(--bg-el);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-h); }
+
+  .term-body {
+    padding: 18px 20px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 2;
+    color: var(--text-dim);
+  }
+
+  .pr { color: var(--accent); user-select: none; }
+  .cm { color: var(--text); }
+  .k { color: #a78bfa; }
+  .v { color: var(--text); }
+
+  .div {
+    height: 1px;
+    background: var(--border);
+    margin: 64px 0;
+  }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .areas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .area {
+    background: var(--bg);
+    padding: 28px 24px;
+  }
+
+  .area h3 {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .area p {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .contact-row a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .contact-row a:hover {
+    border-color: var(--border-h);
+    color: var(--text);
+  }
+
+  .pgp {
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+
+  .pgp:hover { color: var(--text-dim); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+    padding: 24px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 540px) {
+    .areas { grid-template-columns: 1fr; }
+    .hero { padding: 64px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="w">
+
+  <nav>
+    <div class="logo">ezra<span class="c">_</span></div>
+    <ul>
+      <li><a href="#work">work</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Ezra Hatt</h1>
+    <p>Privacy law, AI governance, and information security. Background in the legal side of data protection and the EU AI Act. Also a Linux person.</p>
+  </section>
+
+  <div class="term">
+    <div class="term-bar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div class="term-body">
+      <div><span class="pr">$ </span><span class="cm">cat /etc/ezra</span></div>
+      <br>
+      <div><span class="k">role</span>    <span class="v">privacy lawyer, AI governance</span></div>
+      <div><span class="k">focus</span>   <span class="v">GDPR, EU AI Act, infosec</span></div>
+      <div><span class="k">os</span>      <span class="v">arch linux</span></div>
+      <div><span class="k">editor</span>  <span class="v">nvim</span></div>
+      <div><span class="k">shell</span>   <span class="v">zsh</span></div>
+      <div><span class="k">uptime</span>  <span class="v" id="up">0s</span></div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <section id="work">
+    <div class="label">Areas</div>
+    <div class="areas">
+      <div class="area">
+        <h3>Privacy & data protection</h3>
+        <p>GDPR, DPIAs, regulatory compliance, supervisory matters.</p>
+      </div>
+      <div class="area">
+        <h3>AI regulation</h3>
+        <p>EU AI Act, risk classification, governance frameworks.</p>
+      </div>
+      <div class="area">
+        <h3>Information security</h3>
+        <p>Security architecture, incident response, risk analysis.</p>
+      </div>
+      <div class="area">
+        <h3>Infrastructure</h3>
+        <p>Linux, self-hosting, networking. Understanding the systems being regulated.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="div"></div>
+
+  <section id="contact">
+    <div class="label">Contact</div>
+    <div class="contact-row">
+      <a href="mailto:ezra@example.com">email</a>
+      <a href="https://github.com/hatt-io" target="_blank" rel="noopener">github</a>
+      <a href="https://linkedin.com/in/ezrahatt" target="_blank" rel="noopener">linkedin</a>
+    </div>
+    <div class="pgp" id="pgp" title="Click to copy">pgp: XXXX XXXX XXXX XXXX</div>
+  </section>
+
+  <footer>&copy; <span id="y"></span> Ezra Hatt</footer>
+
+</div>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+const s=Date.now();
+(function u(){const d=Math.floor((Date.now()-s)/1000),m=Math.floor(d/60),h=Math.floor(m/60);document.getElementById('up').textContent=h?h+'h '+m%60+'m '+d%60+'s':m?m+'m '+d%60+'s':d+'s';requestAnimationFrame(u)})();
+document.getElementById('pgp').addEventListener('click',function(){const o=this.textContent;this.textContent='copied';setTimeout(()=>this.textContent=o,1200)});
+</script>
+
+</body>
+</html>
