@@ -5,304 +5,314 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ezra Hatt</title>
 <meta name="description" content="Ezra Hatt. Privacy law, AI governance, information security.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #09090b;
-    --bg-el: #111114;
-    --border: #1e1e24;
-    --border-h: #2a2a34;
-    --text: #d4d4d8;
-    --text-dim: #71717a;
-    --text-muted: #3f3f46;
-    --accent: #6ee7b7;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
+    --fg: #c8c8c8;
+    --fg2: #777;
+    --fg3: #444;
+    --bg: #0d0d0d;
+    --grn: #6bbd6b;
+    --mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
   }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: var(--sans);
+    font-family: var(--mono);
     background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::selection { background: var(--accent); color: var(--bg); }
-
-  .w {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-  }
-
-  .logo .c { animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 0%,50%{opacity:1}51%,100%{opacity:0} }
-
-  nav ul { list-style: none; display: flex; gap: 28px; }
-  nav a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--text-dim); }
-
-  .hero { padding: 100px 0 0; }
-
-  .hero h1 {
-    font-family: var(--sans);
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 500;
-    letter-spacing: -1px;
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-
-  .hero p {
-    font-size: 15px;
-    color: var(--text-dim);
-    max-width: 480px;
-    font-weight: 300;
-  }
-
-  .term {
-    margin: 56px 0 0;
-    background: var(--bg-el);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .term-bar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-h); }
-
-  .term-body {
-    padding: 18px 20px;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    line-height: 2;
-    color: var(--text-dim);
-  }
-
-  .pr { color: var(--accent); user-select: none; }
-  .cm { color: var(--text); }
-  .k { color: #a78bfa; }
-  .v { color: var(--text); }
-
-  .div {
-    height: 1px;
-    background: var(--border);
-    margin: 64px 0;
-  }
-
-  .label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 28px;
-  }
-
-  .areas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .area {
-    background: var(--bg);
-    padding: 28px 24px;
-  }
-
-  .area h3 {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-
-  .area p {
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 300;
+    color: var(--fg);
+    font-size: 14px;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  .contact-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  ::selection { background: var(--fg); color: var(--bg); }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
   }
 
-  .contact-row a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-dim);
+  a { color: var(--fg); }
+  a:hover { color: var(--bg); background: var(--fg); text-decoration: none; }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  .head {
+    border-bottom: 1px solid var(--fg3);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+
+  .head h1 {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--fg);
+    margin-bottom: 2px;
+  }
+
+  .head .sub {
+    color: var(--fg2);
+    font-size: 13px;
+  }
+
+  .s { margin-bottom: 48px; }
+
+  .s-head {
+    color: var(--fg3);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--fg3);
+    padding-bottom: 4px;
+  }
+
+  .links {
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .links .label {
+    color: var(--fg3);
+    display: inline-block;
+    width: 120px;
+  }
+
+  .links a {
+    color: var(--fg2);
     text-decoration: none;
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    transition: border-color 0.2s, color 0.2s;
   }
 
-  .contact-row a:hover {
-    border-color: var(--border-h);
-    color: var(--text);
+  .links a:hover {
+    color: var(--bg);
+    background: var(--fg2);
   }
 
   .pgp {
-    margin-top: 20px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-muted);
+    font-size: 12px;
+    color: var(--fg3);
+    margin-top: 8px;
     cursor: pointer;
     display: inline-block;
-    transition: color 0.2s;
   }
 
-  .pgp:hover { color: var(--text-dim); }
+  .pgp:hover { color: var(--fg2); }
 
-  footer {
-    border-top: 1px solid var(--border);
-    margin-top: 80px;
-    padding: 24px 0;
-    font-family: var(--mono);
+  .foot {
+    border-top: 1px solid var(--fg3);
+    padding-top: 16px;
     font-size: 11px;
-    color: var(--text-muted);
+    color: var(--fg3);
+    display: flex;
+    justify-content: space-between;
   }
 
-  @media (max-width: 540px) {
-    .areas { grid-template-columns: 1fr; }
-    .hero { padding: 64px 0 0; }
+  .foot span:last-child { color: var(--grn); }
+
+  .about p {
+    color: var(--fg2);
+    font-size: 13px;
+  }
+
+  .cur { animation: b 1s steps(1) infinite; }
+  @keyframes b { 0%,50%{opacity:1}51%,100%{opacity:0} }
+
+  @media (max-width: 500px) {
+    .links .label { width: 100px; }
   }
 </style>
 </head>
 <body>
 
-<div class="w">
+<canvas id="asc"></canvas>
 
-  <nav>
-    <div class="logo">ezra<span class="c">_</span></div>
-    <ul>
-      <li><a href="#work">work</a></li>
-      <li><a href="#contact">contact</a></li>
-    </ul>
-  </nav>
+<div class="page">
 
-  <section class="hero">
-    <h1>Ezra Hatt</h1>
-    <p>Privacy law, AI governance, and information security. Background in the legal side of data protection and the EU AI Act. Also a Linux person.</p>
-  </section>
+  <div class="head">
+    <h1>ezra hatt<span class="cur">_</span></h1>
+    <div class="sub">privacy law / ai governance / infosec</div>
+  </div>
 
-  <div class="term">
-    <div class="term-bar">
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    </div>
-    <div class="term-body">
-      <div><span class="pr">$ </span><span class="cm">cat /etc/ezra</span></div>
-      <br>
-      <div><span class="k">role</span>    <span class="v">privacy lawyer, AI governance</span></div>
-      <div><span class="k">focus</span>   <span class="v">GDPR, EU AI Act, infosec</span></div>
-      <div><span class="k">uptime</span>  <span class="v" id="up">0s</span></div>
+  <div class="s" id="about">
+    <div class="s-head">about</div>
+    <div class="about">
+      <p>Lawyer at Sweden's data protection authority. I work where privacy law, AI regulation and actual technology intersect.</p>
     </div>
   </div>
 
-  <div class="div"></div>
-
-  <section id="work">
-    <div class="label">Areas</div>
-    <div class="areas">
-      <div class="area">
-        <h3>Privacy & data protection</h3>
-        <p>GDPR, DPIAs, regulatory compliance, supervisory matters.</p>
-      </div>
-      <div class="area">
-        <h3>AI regulation</h3>
-        <p>EU AI Act, risk classification, governance frameworks.</p>
-      </div>
-      <div class="area">
-        <h3>Information security</h3>
-        <p>Security architecture, incident response, risk analysis.</p>
-      </div>
-      <div class="area">
-        <h3>Infrastructure</h3>
-        <p>Linux, self-hosting, networking. Understanding the systems being regulated.</p>
-      </div>
+  <div class="s" id="interests">
+    <div class="s-head">interests</div>
+    <div class="about">
+      <p>self-hosting, local ai, home infrastructure, scifi, keyboards, pentesting, linux, music, history.</p>
     </div>
-  </section>
+  </div>
 
-  <div class="div"></div>
-
-  <section id="contact">
-    <div class="label">Contact</div>
-    <div class="contact-row">
-      <a href="#" id="email-link">email</a>
-      <a href="https://github.com/hatt-io" target="_blank" rel="noopener">github</a>
-      <a href="https://www.linkedin.com/in/ezra-hatt-b528aa115/" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://mastodon.nu/@ezra" target="_blank" rel="me noopener">mastodon</a>
-      <a href="https://matrix.to/#/@ezre:matrix.org" target="_blank" rel="noopener">matrix</a>
+  <div class="s" id="contact">
+    <div class="s-head">contact</div>
+    <div class="links">
+      <div><span class="label">email</span><a href="#" id="em">click to reveal</a></div>
+      <div><span class="label">github</span><a href="https://github.com/hatt-io" target="_blank" rel="noopener">hatt-io</a></div>
+      <div><span class="label">linkedin</span><a href="https://www.linkedin.com/in/ezra-hatt-b528aa115/" target="_blank" rel="noopener">ezra-hatt</a></div>
+      <div><span class="label">mastodon</span><a href="https://mastodon.nu/@ezra" target="_blank" rel="me noopener">@ezra@mastodon.nu</a></div>
+      <div><span class="label">matrix</span><a href="https://matrix.to/#/@ezre:matrix.org" target="_blank" rel="noopener">@ezre:matrix.org</a></div>
     </div>
-    <div class="pgp" id="pgp" title="Click to copy fingerprint">pgp: 4ED8 CF9A 6607 C949</div>
-    <br>
-    <a href="pubkey.asc" class="pgp" download>download public key</a>
-  </section>
+    <div class="pgp" id="pgp">pgp: 4ED8 CF9A 6607 C949 [<a href="pubkey.asc" download style="color:inherit">key</a>]</div>
+  </div>
 
-  <footer>&copy; <span id="y"></span> Ezra Hatt</footer>
+  <div class="foot">
+    <span>&copy; <span id="y"></span> ezra hatt</span>
+    <span id="up"></span>
+  </div>
 
 </div>
 
 <script>
 document.getElementById('y').textContent=new Date().getFullYear();
 
-// obfuscated email
-(function(){
-  var u='hej',d='hatt.io';
-  var el=document.getElementById('email-link');
-  el.addEventListener('click',function(e){
-    e.preventDefault();
-    window.location.href='mai'+'lto:'+u+'@'+d;
-  });
+document.getElementById('em').addEventListener('click',function(e){
+  e.preventDefault();
+  var a='hej',b='hatt.io',f=a+'@'+b;
+  this.textContent=f;
+  this.href='mai'+'lto:'+f;
+});
+
+document.getElementById('pgp').addEventListener('click',function(e){
+  if(e.target.tagName==='A')return;
+  navigator.clipboard.writeText('4ED8CF9A6607C949');
+  var s=this.childNodes[0];
+  var o=s.textContent;
+  s.textContent='copied ';
+  setTimeout(function(){s.textContent=o},1200);
+});
+
+var st=Date.now();
+(function u(){
+  var d=Math.floor((Date.now()-st)/1000);
+  var m=Math.floor(d/60),h=Math.floor(m/60);
+  var t=h?h+'h '+m%60+'m '+d%60+'s':m?m+'m '+d%60+'s':d+'s';
+  document.getElementById('up').textContent='up '+t;
+  requestAnimationFrame(u);
 })();
 
-// uptime
-const s=Date.now();
-(function u(){const d=Math.floor((Date.now()-s)/1000),m=Math.floor(d/60),h=Math.floor(m/60);document.getElementById('up').textContent=h?h+'h '+m%60+'m '+d%60+'s':m?m+'m '+d%60+'s':d+'s';requestAnimationFrame(u)})();
+// ── ASCII flow field ──
+(function(){
+  var c=document.getElementById('asc');
+  var ctx=c.getContext('2d');
+  var w,h,cols,rows;
+  var cellW=12,cellH=18;
+  var chars='.:-=+*#%@'.split('');
+  var mx=-1,my=-1;
+  var t=0;
 
-// pgp copy
-document.getElementById('pgp').addEventListener('click',function(){navigator.clipboard.writeText('4ED8CF9A6607C949');const o=this.textContent;this.textContent='copied';setTimeout(()=>this.textContent=o,1200)});
+  // simplex-ish noise (fast enough for this)
+  var perm=new Uint8Array(512);
+  for(var i=0;i<256;i++)perm[i]=i;
+  for(var i=255;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=perm[i];perm[i]=perm[j];perm[j]=tmp;}
+  for(var i=0;i<256;i++)perm[i+256]=perm[i];
+
+  function fade(t){return t*t*t*(t*(t*6-15)+10);}
+  function lerp(a,b,t){return a+t*(b-a);}
+  function grad(h,x,y){var v=h&3;return((v&1)?-x:x)+((v&2)?-y:y);}
+
+  function noise(x,y){
+    var X=Math.floor(x)&255,Y=Math.floor(y)&255;
+    x-=Math.floor(x);y-=Math.floor(y);
+    var u=fade(x),v=fade(y);
+    var a=perm[X]+Y,b=perm[X+1]+Y;
+    return lerp(
+      lerp(grad(perm[a],x,y),grad(perm[b],x-1,y),u),
+      lerp(grad(perm[a+1],x,y-1),grad(perm[b+1],x-1,y-1),u),
+      v
+    );
+  }
+
+  function resize(){
+    var dpr=window.devicePixelRatio||1;
+    w=window.innerWidth;
+    h=window.innerHeight;
+    c.width=w*dpr;
+    c.height=h*dpr;
+    c.style.width=w+'px';
+    c.style.height=h+'px';
+    ctx.scale(dpr,dpr);
+    cols=Math.ceil(w/cellW);
+    rows=Math.ceil(h/cellH);
+  }
+
+  window.addEventListener('resize',resize);
+  resize();
+
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;
+  });
+
+  document.addEventListener('mouseleave',function(){
+    mx=-1;my=-1;
+  });
+
+  function draw(){
+    t+=0.003;
+    ctx.clearRect(0,0,w,h);
+    ctx.font='11px "SF Mono","Cascadia Code","JetBrains Mono","Consolas",monospace';
+    ctx.textBaseline='top';
+
+    for(var row=0;row<rows;row++){
+      for(var col=0;col<cols;col++){
+        var x=col*cellW;
+        var y=row*cellH;
+
+        var nx=col*0.06+t;
+        var ny=row*0.06+t*0.7;
+        var n=noise(nx,ny);
+
+        // mouse influence
+        var brightness=0;
+        if(mx>=0){
+          var dx=x-mx;
+          var dy=y-my;
+          var dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<180){
+            brightness=(1-dist/180)*0.5;
+            n+=brightness*0.8;
+          }
+        }
+
+        // map noise to character
+        var idx=Math.floor(((n+1)/2)*chars.length);
+        idx=Math.max(0,Math.min(chars.length-1,idx));
+        var ch=chars[idx];
+
+        // base opacity very low, brighter near mouse
+        var alpha=0.04+brightness*0.4;
+
+        // green tint near mouse, otherwise grey
+        var g=brightness>0.05?Math.floor(100+brightness*155):50;
+        var r=brightness>0.05?Math.floor(30+brightness*40):50;
+        var b2=brightness>0.05?Math.floor(30+brightness*40):50;
+
+        ctx.fillStyle='rgba('+r+','+g+','+b2+','+alpha+')';
+        ctx.fillText(ch,x,y);
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
 </script>
 
 </body>
