@@ -272,11 +272,15 @@
   <section id="contact">
     <div class="label">Contact</div>
     <div class="contact-row">
-      <a href="mailto:ezra@example.com">email</a>
+      <a href="#" id="email-link">email</a>
       <a href="https://github.com/hatt-io" target="_blank" rel="noopener">github</a>
-      <a href="https://linkedin.com/in/ezrahatt" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://www.linkedin.com/in/ezra-hatt-b528aa115/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://mastodon.nu/@ezra" target="_blank" rel="me noopener">mastodon</a>
+      <a href="https://matrix.to/#/@ezre:matrix.org" target="_blank" rel="noopener">matrix</a>
     </div>
-    <div class="pgp" id="pgp" title="Click to copy">pgp: XXXX XXXX XXXX XXXX</div>
+    <div class="pgp" id="pgp" title="Click to copy fingerprint">pgp: 4ED8 CF9A 6607 C949</div>
+    <br>
+    <a href="pubkey.asc" class="pgp" download>download public key</a>
   </section>
 
   <footer>&copy; <span id="y"></span> Ezra Hatt</footer>
@@ -285,9 +289,23 @@
 
 <script>
 document.getElementById('y').textContent=new Date().getFullYear();
+
+// obfuscated email
+(function(){
+  var u='hej',d='hatt.io';
+  var el=document.getElementById('email-link');
+  el.addEventListener('click',function(e){
+    e.preventDefault();
+    window.location.href='mai'+'lto:'+u+'@'+d;
+  });
+})();
+
+// uptime
 const s=Date.now();
 (function u(){const d=Math.floor((Date.now()-s)/1000),m=Math.floor(d/60),h=Math.floor(m/60);document.getElementById('up').textContent=h?h+'h '+m%60+'m '+d%60+'s':m?m+'m '+d%60+'s':d+'s';requestAnimationFrame(u)})();
-document.getElementById('pgp').addEventListener('click',function(){const o=this.textContent;this.textContent='copied';setTimeout(()=>this.textContent=o,1200)});
+
+// pgp copy
+document.getElementById('pgp').addEventListener('click',function(){navigator.clipboard.writeText('4ED8CF9A6607C949');const o=this.textContent;this.textContent='copied';setTimeout(()=>this.textContent=o,1200)});
 </script>
 
 </body>
