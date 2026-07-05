@@ -1,1 +1,11 @@
-{"m.homeserver":{"base_url":"https://snack.hatt.io"}}
+  {
+    "m.homeserver": {
+      "base_url": "https://snack.hatt.io"
+    },
+    "org.matrix.msc4143.rtc_foci": [
+      {
+        "type": "livekit",
+        "livekit_service_url": "https://snack.hatt.io/livekit/jwt"
+      }
+    ]
+  }
